@@ -1,0 +1,71 @@
+#!/bin/python
+
+# Begin imports
+import os
+import sys
+import shutil
+
+# Variable initialization
+# Add aur package names to `aur_packages` array to install more aur packages
+aur_packages = ["yay"]
+uname = os.getlogin()
+repo_command = "repo-add custom.db.tar.gz"
+currentdir = os.getcwd()
+given_args = sys.argv
+std_packages_given = False
+std_packages = []
+
+# Args handler
+match given_args[1]:
+    case "-h":
+        print("cscOS build script")
+        print("-h                              Print this help message")
+        print("-a AUR_PACKAGE_NAMES            Add aur packages to cscOS")
+        print("-p PACKAGE_NAMES                Add packages from pacman to cscOS")
+        sys.exit()
+    case "-a":
+        if len(given_args) <= 2:
+            sys.exit("Please run again with packages")
+        for i in range(len(given_args) - 2):
+            aur_packages.append(given_args[i + 2])
+    case "-p":
+        if len(given_args) <= 2:
+            sys.exit("Please run again with packages")
+        std_packages_given = True
+        for i in range(len(given_args) - 2):
+            std_packages.append(given_args[i + 2])
+
+
+# Create custom repository
+os.mkdir("/home/" + uname + "/cust_repo")
+os.chdir("/home/" + uname + "/cust_repo")
+# Open packages file for appending AUR packages
+f = open(currentdir + "/OS/packages.x86_64", "a")
+for i in range(len(aur_packages)):
+    os.system("git clone https://aur.archlinux.org/" + aur_packages[i] + ".git")
+    os.chdir("./" + aur_packages[i])
+    os.system("makepkg")
+    os.chdir("..")
+    os.system("mv ./" + aur_packages[i] + "/" + aur_packages[i] + "*.zst ./")
+    repo_command += (" " + aur_packages[i] + "-*.zst")
+    # Append package that was built to packages list
+    f.write(aur_packages[i] + "\n" )
+
+# Add pacman packages
+if std_packages_given:
+    for i in range(len(std_packages)):
+        f.write(std_packages[i] + "\n")
+
+# Closing packages file after done with it
+f.close()
+
+os.system(repo_command)
+
+# Build image
+os.chdir(currentdir)
+os.system("echo \"Server = file:///home/" + uname + "/cust_repo/\" >> ./OS/pacman.conf")
+os.system("mkdir work")
+os.system("sudo mkarchiso -w work -v -o ./ OS")
+
+# Clean up
+os.system("rm -rf /home/" + uname + "/cust_repo")

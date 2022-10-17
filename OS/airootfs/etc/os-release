@@ -1,0 +1,5 @@
+NAME="cscOS"
+PRETTY_NAME="cscOS"
+ID=cscos
+BUILD_ID=rolling
+HOME_URL="https://github.com/chicken-in-a-can/cscos"

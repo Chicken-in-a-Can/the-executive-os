@@ -1,0 +1,8 @@
+[Unit]
+Description=Change default wallpaper for cscOS
+
+[Service]
+ExecStart=/root/.wallpaper/defaultwall.py
+
+[Install]
+WantedBy=multi-user.target

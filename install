@@ -1,0 +1,51 @@
+#!/bin/bash
+echo "Devices: "
+echo ""
+lsblk
+echo ""
+
+# Variable initialization
+read -p "What device do you want to install cscOS on: " device
+img=$(ls | grep "cscOS-")
+size=$(stat -c"%s" $img)
+size=$((size/1048576))
+
+# Flash .iso file to specified drive
+echo "Flashing $img to /dev/$device, image size = $size MiB"
+sudo dd if=$img of=/dev/$device status=progress
+echo "Image flashed, finishing touches being applied"
+
+# sed used to remove comments from text put into fdisk. fdisk created 3rd partition
+sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | sudo fdisk /dev/$device
+  n # new partition
+  p # primary partition
+  3 # partition number 3
+    # default - start at beginning of disk 
+    # default - start at beginning of disk 
+  w # write partition
+EOF
+
+echo "Waiting for partition to finish being created"
+
+# Next command only occasionally work immediately, 
+
+sleep 10
+
+# lsblk and mkfs don't detect 3rd partition unless I fdisk and quit
+sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | sudo fdisk /dev/$device
+  q # quit
+EOF
+
+# Add 3rd partition to device var
+device+="3"
+
+# Extra layer of wait in case something takes a lot of time
+while ! (lsblk | grep -q "$device")
+do
+  sleep 2.5
+done
+
+# Make ext4 partition on 3rd partition of drive
+sudo mkfs.ext4 /dev/$device
+echo "Bootable drive created"
+exit 0
