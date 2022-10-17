@@ -18,10 +18,10 @@ std_packages = []
 # Args handler
 match given_args[1]:
     case "-h":
-        print("cscOS build script")
+        print("BossOS build script")
         print("-h                              Print this help message")
-        print("-a AUR_PACKAGE_NAMES            Add aur packages to cscOS")
-        print("-p PACKAGE_NAMES                Add packages from pacman to cscOS")
+        print("-a AUR_PACKAGE_NAMES            Add aur packages to BossOS")
+        print("-p PACKAGE_NAMES                Add packages from pacman to BossOS")
         sys.exit()
     case "-a":
         if len(given_args) <= 2:

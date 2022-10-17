@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2034
 
-iso_name="cscOS"
-iso_label="cscOS_$(date +%Y%m)"
-iso_publisher="Chicken in a Can <https://github.com/Chicken-in-a-Can/cscOS>"
-iso_application="cscOS Live USB"
+iso_name="BossOS"
+iso_label="BossOS_$(date +%Y%m)"
+iso_publisher="Chicken in a Can <https://github.com/Chicken-in-a-Can/the-executive-os>"
+iso_application="BossOS Live USB"
 iso_version="$(date +%Y.%m.%d)"
 install_dir="arch"
 buildmodes=('iso')

@@ -17,7 +17,7 @@ plugin=org.kde.plasma.folder
 wallpaperplugin=org.kde.image
 
 [Containments][1][Wallpaper][org.kde.image][General]
-Image=file:///root/.wallpaper/barn_01.jpg
+Image=file:///root/.wallpaper/executive.jpg
 
 [Containments][2]
 activityId=

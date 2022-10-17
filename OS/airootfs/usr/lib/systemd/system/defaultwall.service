@@ -1,5 +1,5 @@
 [Unit]
-Description=Change default wallpaper for cscOS
+Description=Change default wallpaper for BossOS
 
 [Service]
 ExecStart=/root/.wallpaper/defaultwall.py

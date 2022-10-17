@@ -5,8 +5,8 @@ lsblk
 echo ""
 
 # Variable initialization
-read -p "What device do you want to install cscOS on: " device
-img=$(ls | grep "cscOS-")
+read -p "What device do you want to install BossOS on: " device
+img=$(ls | grep "BossOS-")
 size=$(stat -c"%s" $img)
 size=$((size/1048576))
 

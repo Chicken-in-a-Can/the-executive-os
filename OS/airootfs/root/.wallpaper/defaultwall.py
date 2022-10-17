@@ -16,7 +16,7 @@ while loop:
     # Parse lines to find which has Image on it, replace line
     for i in range(len(lines)):
       if lines[i][0:5] == "Image":
-        lines[i] = "Image=file:///root/.wallpaper/barn_01.jpg\n"
+        lines[i] = "Image=file:///root/.wallpaper/executive.jpg\n"
     # Write back to file
     f=open("/root/.config/plasma-org.kde.plasma.desktop-appletsrc", "w")
     f.writelines(lines)
