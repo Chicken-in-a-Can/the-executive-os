@@ -1,4 +1,5 @@
 #!/bin/bash
+currentdir="$(pwd)"
 echo "Devices: "
 echo ""
 lsblk
@@ -20,14 +21,14 @@ sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | sudo fdisk /dev/$device
   n # new partition
   p # primary partition
   3 # partition number 3
-    # default - start at beginning of disk 
-    # default - start at beginning of disk 
+    # default - start at beginning of disk
+    # default - start at beginning of disk
   w # write partition
 EOF
 
 echo "Waiting for partition to finish being created"
 
-# Next command only occasionally work immediately, 
+# Next command only occasionally work immediately, so delay
 
 sleep 10
 
@@ -47,5 +48,17 @@ done
 
 # Make ext4 partition on 3rd partition of drive
 sudo mkfs.ext4 /dev/$device
+sudo mount /dev/$device /mnt/tempmnt
+cd /mnt/tempmnt
+git clone https://aur.archlinux.org/yay
+sudo chown -R bob:bob ./yay
+sudo chmod -R 666 ./yay
+cd ./yay
+makepkg
+cd ..
+mv ./yay/yay*.zst ./
+rm -rf ./yay
+cd $currentdir
+sudo umount /dev/$device
 echo "Bootable drive created"
 exit 0
