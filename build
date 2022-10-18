@@ -16,24 +16,25 @@ std_packages_given = False
 std_packages = []
 
 # Args handler
-match given_args[1]:
-    case "-h":
-        print("BossOS build script")
-        print("-h                              Print this help message")
-        print("-a AUR_PACKAGE_NAMES            Add aur packages to BossOS")
-        print("-p PACKAGE_NAMES                Add packages from pacman to BossOS")
-        sys.exit()
-    case "-a":
-        if len(given_args) <= 2:
-            sys.exit("Please run again with packages")
-        for i in range(len(given_args) - 2):
-            aur_packages.append(given_args[i + 2])
-    case "-p":
-        if len(given_args) <= 2:
-            sys.exit("Please run again with packages")
-        std_packages_given = True
-        for i in range(len(given_args) - 2):
-            std_packages.append(given_args[i + 2])
+if len(given_args) > 1:
+    match given_args[1]:
+        case "-h":
+            print("BossOS build script")
+            print("-h                              Print this help message")
+            print("-a AUR_PACKAGE_NAMES            Add aur packages to BossOS")
+            print("-p PACKAGE_NAMES                Add packages from pacman to BossOS")
+            sys.exit()
+        case "-a":
+            if len(given_args) <= 2:
+                sys.exit("Please run again with packages")
+            for i in range(len(given_args) - 2):
+                aur_packages.append(given_args[i + 2])
+        case "-p":
+            if len(given_args) <= 2:
+                sys.exit("Please run again with packages")
+            std_packages_given = True
+            for i in range(len(given_args) - 2):
+                std_packages.append(given_args[i + 2])
 
 
 # Create custom repository
