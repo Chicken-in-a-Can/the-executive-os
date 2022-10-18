@@ -48,17 +48,5 @@ done
 
 # Make ext4 partition on 3rd partition of drive
 sudo mkfs.ext4 /dev/$device
-sudo mount /dev/$device /mnt/tempmnt
-cd /mnt/tempmnt
-git clone https://aur.archlinux.org/yay
-sudo chown -R bob:bob ./yay
-sudo chmod -R 666 ./yay
-cd ./yay
-makepkg
-cd ..
-mv ./yay/yay*.zst ./
-rm -rf ./yay
-cd $currentdir
-sudo umount /dev/$device
 echo "Bootable drive created"
 exit 0
