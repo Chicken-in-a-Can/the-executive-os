@@ -20,21 +20,4 @@ def setwallpaper(filepath, plugin='org.kde.image'):
         'org.kde.plasmashell', '/PlasmaShell'), dbus_interface='org.kde.PlasmaShell')
     plasma.evaluateScript(jscript % (plugin, plugin, filepath))
 
-def set_lockscreen_wallpaper(filepath,plugin='org.kde.image'):
-    if os.path.exists(SCREEN_LOCK_CONFIG):
-        new_data=[]
-        with open(SCREEN_LOCK_CONFIG, "r") as kscreenlockerrc:
-            new_data = kscreenlockerrc.readlines()
-            is_wallpaper_section=False
-            for num,line in enumerate(new_data,1):
-                if "[Greeter][Wallpaper]["+plugin+"][General]" in line:
-                    is_wallpaper_section = True
-                if "Image=" in line and is_wallpaper_section:
-                    new_data[num-1] = "Image="+filepath+"\n"
-                    break
-
-        with open(SCREEN_LOCK_CONFIG, "w") as kscreenlockerrc:
-            kscreenlockerrc.writelines(new_data)
-
 setwallpaper("/root/.wallpaper/executive.jpg", plugin="org.kde.Plasma")
-set_lockscreen_wallpaper("/root/.wallpaper/executive.jpg", plugin="org.kde.Plasma")
