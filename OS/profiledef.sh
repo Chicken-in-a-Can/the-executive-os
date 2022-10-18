@@ -25,4 +25,5 @@ file_permissions=(
   ["/root/.setup"]="0:0:755"
   ["/root/Desktop/konsole.desktop"]="0:0:755"
   ["/root/.wallpaper/defaultwall.py"]="0:0:755"
+  ["/root/.wallpaper/wallchange.py"]="0:0:755"
 )

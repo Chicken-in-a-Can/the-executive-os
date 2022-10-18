@@ -10,7 +10,7 @@ if not os.path.exists("/root/persistent"):
   longcmd = os.popen("df -h /run/archiso/bootmnt | grep \"/dev\"").read()
   longarr = longcmd.split(" ")
   partition = longarr[0]
-  
+
   # Remove partition number and append new partition number
   drive = partition[:-1]
   newpartition = drive + "3"
@@ -22,7 +22,3 @@ if not os.path.exists("/root/persistent"):
   os.system("cp -r /root/.dotfiles/neofetch /root/.config")
   os.system("mkdir /root/.config/nvim")
   os.system("cp /root/.dotfiles/init.vim /root/.config/nvim")
-  
-  # Restart KDE Plasma so wallpaper changes
-  os.system("kquitapp5 plasmashell")
-  os.system("kstart5 plasmashell")

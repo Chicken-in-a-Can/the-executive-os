@@ -16,6 +16,7 @@ clonezilla
 cloud-init
 cryptsetup
 darkhttpd
+dbus-python
 ddrescue
 discover
 dhclient
