@@ -1,15 +1,7 @@
-" Taken from https://github.com/jdhao/minimal_vim/
+" Taken from https://github.com/jdhao/minimal_vim/ and slightly modified
 
 set encoding=utf-8
 scriptencoding utf-8
-
-"{ Builtin optional plugins
-" Activate matchit plugin
-runtime! macros/matchit.vim
-
-" Activate man page plugin
-runtime! ftplugin/man.vim
-"}
 
 "{ Builtin options and settings
 if !has('nvim')
