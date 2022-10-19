@@ -51,8 +51,6 @@ irssi
 iw
 iwd
 jfsutils
-jdk-openjdk
-jre-openjdk
 kitty-terminfo
 kde-applications
 kf5
@@ -117,6 +115,7 @@ reflector
 reiserfsprogs
 rp-pppoe
 rsync
+rust
 rxvt-unicode-terminfo
 screen
 sddm
