@@ -1,0 +1,8 @@
+[Unit]
+Description=Wait for splash screen to disappear to change wallpaper
+
+[Service]
+ExecStart=/root/.wallpaper/wallwait.sh
+
+[Install]
+WantedBy=multi-user.target
