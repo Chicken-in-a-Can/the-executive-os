@@ -1,8 +1,8 @@
 # BossOS
-**BossOS** rewrite. Using KDE Plasma now, cause it looks better than XFCE. And making good build and install scripts, so that it's better. Whole thing's Arch-based, cause it's superior  
+**BossOS** rewrite. KDE Plasma is now used due to it being easier to use and better looking than XFCE. Build and install scripts now actually work. Now based on Arch even though Fedora is better.
 
 ## How to Use
-To use BossOS, you have to built it yourself
+To use BossOS, you have to build it yourself.
 ```console
 # clone the repo
 git clone https://github.com/Chicken-in-a-Can/the-executive-os
@@ -13,7 +13,7 @@ cd the-executive-os
 # install the OS, enter sudo passwd when prompted
 ./install
 ```
-We'll try to get some http mirrors set up on our website so you can download it, but may take a bit  
+We will try to set up some HTTP mirrors on our website so you can download it, but this may take some time.
 
-## Website
+## Website (Currently under "maintenance")
 [BossOS.org](https://bossos.org)
