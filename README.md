@@ -15,5 +15,5 @@ cd the-executive-os
 ```
 We will try to set up some HTTP mirrors on our website so you can download it, but this may take some time.
 
-## Website
+## Website (Currently under "maintenance")
 [BossOS.org](https://bossos.org)
